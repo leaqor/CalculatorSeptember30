@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
-    android:columnCount="3">
+    android:columnCount="4">
 
     <Button
         android:id="@+id/key_1"
@@ -30,6 +30,14 @@
         android:layout_gravity="fill_horizontal" />
 
     <Button
+        android:id="@+id/key_plus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/key_plus"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill_horizontal" />
+
+    <Button
         android:id="@+id/key_4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -48,6 +56,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/key_6"
+        android:layout_gravity="fill_horizontal" />
+
+    <Button
+        android:id="@+id/key_minus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/key_minus"
+        android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal" />
 
     <Button
@@ -72,6 +88,14 @@
         android:layout_gravity="fill_horizontal" />
 
     <Button
+        android:id="@+id/key_mult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/key_mult"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill_horizontal" />
+
+    <Button
         android:id="@+id/key_0"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -84,6 +108,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/key_dot"
+        android:layout_gravity="fill_horizontal" />
+
+    <Button
+        android:id="@+id/key_div"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/key_div"
+        android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal" />
 
 </GridLayout>
