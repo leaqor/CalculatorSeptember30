@@ -12,5 +12,34 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="materialButtonStyle">@style/CalcButton</item>
     </style>
+
+    <style name="Theme.CalculatorSeptember30.Version2">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@android:color/black</item>
+
+        <item name="materialButtonStyle">@style/CalcButton.Version2</item>
+
+    </style>
+
+    <style name="Theme.CalculatorSeptember30.Version3">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@android:color/darker_gray</item>
+
+        <item name="materialButtonStyle">@style/CalcButton.Version2</item>
+
+    </style>
+
+
+    <style name="Theme.CalculatorSeptember30.Version4">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@android:color/white</item>
+
+        <item name="materialButtonStyle">@style/CalcButton.Version2</item>
+
+    </style>
+
+
 </resources>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">CalculatorSeptember30</string>
+    <string name="key_1">I</string>
+    <string name="key_2">II</string>
+    <string name="key_3">III</string>
+    <string name="key_4">IV</string>
+    <string name="key_5">V</string>
+    <string name="key_6">VI</string>
+    <string name="key_7">VII</string>
+    <string name="key_8">VIII</string>
+    <string name="key_9">IX</string>
+    <string name="key_0">X</string>
+    <string name="list_empty">List is empty</string>
+    <string name="key_dot">.</string>
+    <string name="settings">Settings</string>
+    <string name="increase">Up</string>
+    <string name="key_plus">+</string>
+    <string name="key_minus">-</string>
+    <string name="key_mult">*</string>
+    <string name="key_div">/</string>
+    <string name="key_log">log</string>
+    <string name="key_sqrt">Sqrt</string>
+    <string name="key_pow">POW</string>
+    <string name="key_percent">%</string>
+</resources>

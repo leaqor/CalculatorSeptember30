@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.neocaptainnemo.calculatorseptember30.R;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -27,6 +28,10 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_settings);
+
+        TextInputLayout textInputLayout = findViewById(R.id.text_input_layout);
+
+        textInputLayout.setError("Error");
 
         if (savedInstanceState == null) {
             logLifecycle("onCreate for the first time");
