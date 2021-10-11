@@ -1,5 +1,9 @@
 package com.neocaptainnemo.calculatorseptember30.junk;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.neocaptainnemo.calculatorseptember30.R;
 
-public class SettingsActivity extends AppCompatActivity {
+public class JunkActivity extends AppCompatActivity {
 
     private static final String ARG_COUNT = "ARG_COUNT";
     private static final String ARG_COUNT_2 = "ARG_COUNT_2";
@@ -23,11 +27,21 @@ public class SettingsActivity extends AppCompatActivity {
     private Counter counter;
     private CounterAnother counterAnother;
 
+    public static class MyReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+        }
+    }
+
+    private MyReceiver receiver = new MyReceiver();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_junk);
 
         TextInputLayout textInputLayout = findViewById(R.id.text_input_layout);
 
@@ -84,6 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         logLifecycle("onRestoreInstanceState");
@@ -96,6 +111,14 @@ public class SettingsActivity extends AppCompatActivity {
         super.onStart();
 
         logLifecycle("onStart");
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_VIEW);
+        intentFilter.addDataScheme("calc");
+        intentFilter.addCategory(Intent.CATEGORY_BROWSABLE);
+        intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+
+        registerReceiver(receiver, intentFilter);
 
     }
 
@@ -117,6 +140,9 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
+
+        unregisterReceiver(receiver);
+
         logLifecycle("onStop");
     }
 
@@ -136,6 +162,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onDestroy();
 
         logLifecycle("onDestroy");
+
     }
 
 

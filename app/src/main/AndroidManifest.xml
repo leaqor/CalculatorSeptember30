@@ -3,19 +3,18 @@
     package="com.neocaptainnemo.calculatorseptember30">
 
     <application
+        android:name=".CalcApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CalculatorSeptember30">
-        <activity android:name=".junk.MainActivity">
-        </activity>
-
+        <activity android:name=".ui.SettingsActivity" />
+        <activity android:name=".junk.MainActivity" />
         <activity
-            android:name=".junk.SettingsActivity"
+            android:name=".junk.JunkActivity"
             android:screenOrientation="portrait" />
-
         <activity android:name=".ui.CalculatorActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +22,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="calc"
+                    android:host="start" />
+
+                <!-- calc://start -->
+
+            </intent-filter>
         </activity>
+
+<!--        <receiver android:name=".junk.JunkActivity$MyReceiver">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+<!--                <data-->
+<!--                    android:scheme="calc"-->
+<!--                    android:host="start" />-->
+
+<!--                &lt;!&ndash; calc://start &ndash;&gt;-->
+
+<!--            </intent-filter>-->
+
+<!--        </receiver>-->
     </application>
 
 </manifest>

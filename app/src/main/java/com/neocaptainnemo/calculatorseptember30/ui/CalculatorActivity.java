@@ -1,17 +1,21 @@
 package com.neocaptainnemo.calculatorseptember30.ui;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.neocaptainnemo.calculatorseptember30.CalcApp;
 import com.neocaptainnemo.calculatorseptember30.R;
 import com.neocaptainnemo.calculatorseptember30.domain.CalculatorImp;
 import com.neocaptainnemo.calculatorseptember30.domain.Operation;
@@ -19,7 +23,6 @@ import com.neocaptainnemo.calculatorseptember30.domain.Theme;
 import com.neocaptainnemo.calculatorseptember30.storage.ThemeStorage;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CalculatorActivity extends AppCompatActivity implements CalculatorView {
@@ -28,15 +31,42 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
 
     private TextView txtResult;
 
-    private LinearLayout container;
-
     private CalculatorPresenter presenter;
 
     private ThemeStorage storage;
 
+    private final ActivityResultLauncher<Intent> settingsLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+
+            if (result.getResultCode() == Activity.RESULT_OK) {
+                if (result.getData() != null) {
+                    Theme theme = (Theme) result.getData().getSerializableExtra(ARG_THEME);
+
+                    storage.setTheme(theme);
+
+                    recreate();
+                }
+            }
+
+        }
+    });
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Context context = this;
+
+        CalcApp calcApp = (CalcApp) getApplicationContext();
+
+        Context applicationContext = getApplicationContext();
+
 
         storage = new ThemeStorage(this);
 
@@ -52,6 +82,10 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         presenter = new CalculatorPresenter(this, new CalculatorImp());
 
         txtResult = findViewById(R.id.txt_result);
+
+        Intent launchIntent = getIntent();
+
+        txtResult.setText(launchIntent.getStringExtra("WELCOME"));
 
         Map<Integer, Integer> digits = new HashMap<>();
         digits.put(R.id.key_0, 0);
@@ -119,36 +153,26 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
             });
         }
 
-        container = findViewById(R.id.theme_container);
-
-        if (container == null) {
-            return;
-        }
-
         float pxCalcBtnSize = getResources().getDimension(R.dimen.calc_btn_size);
         String key0 = getString(R.string.key_0);
 
-        for (Theme theme: Theme.values()) {
-            View itemView = getLayoutInflater().inflate(R.layout.item_theme, container, false);
+        Button settingsButton = findViewById(R.id.btn_settings);
 
-            ImageView img = itemView.findViewById(R.id.img);
-            TextView txt = itemView.findViewById(R.id.txt);
-
-            img.setImageResource(theme.getImg());
-
-            String txtValue = getString(theme.getTitle());
-            txt.setText(txtValue);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
+        if (settingsButton != null) {
+            settingsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    storage.setTheme(theme);
+                    Intent intent = new Intent(CalculatorActivity.this, SettingsActivity.class);
 
-                    recreate();
+                    Theme theme = storage.getTheme();
+                    intent.putExtra(SettingsActivity.ARG_THEME, theme);
+
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    settingsLauncher.launch(intent);
+//                    startActivity(intent);
                 }
             });
-
-            container.addView(itemView);
         }
     }
 

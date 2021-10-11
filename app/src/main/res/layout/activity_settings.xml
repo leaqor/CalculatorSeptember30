@@ -1,61 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools">
+    tools:context=".ui.SettingsActivity">
 
-    <TextView
-        android:id="@+id/txt_counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="42sp"
-        tools:text="0" />
-
-    <Button
-        android:id="@+id/btn_increase_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/increase" />
-
-    <TextView
-        android:id="@+id/txt_counter_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="42sp"
-        tools:text="0" />
-
-    <Button
-        android:id="@+id/btn_increase_count_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/increase" />
-
-    <TextView
-        android:id="@+id/txt_counter_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="42sp"
-        tools:text="0" />
-
-    <Button
-        android:id="@+id/btn_increase_count_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/increase" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout"
+    <LinearLayout
+        android:id="@+id/theme_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:errorEnabled="true">
+        android:orientation="vertical" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/btn_terms_conditions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_terms_conditions"
+        android:layout_margin="@dimen/default_margin" />
 
 </LinearLayout>
